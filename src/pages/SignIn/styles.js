@@ -1,0 +1,50 @@
+import styled from 'styled-components/native';
+
+
+export const Background = styled.View`
+    flex: 1;
+    background-color: #f0f4ff;
+`;
+
+export const Container = styled.KeyboardAvoidingView`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+export const Logo = styled.Image`
+    margin-bottom: 25px;`
+
+export const AreaInput = styled.View`
+width: 100%;
+flex-direction: row;
+justify-content: center;
+`
+
+export const Input = styled.TextInput`
+    background-color: #fff;
+    width: 90%;
+    font-size: 17px;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    color: #121212
+`;
+
+export const SubmitButton = styled.TouchableOpacity`
+width: 90%;
+height: 45px;
+border-radius: 7px;
+background-color: #3b3dbf;
+align-items: center;
+justify-content: center;
+margin-top: 10px;
+`
+export const SubmitText = styled.Text`
+font-size: 18px;
+color: #fff;
+`
+export const Link = styled.TouchableOpacity`
+margin-top: 15px;
+margin-bottom: 20px;`
+export const LinkText = styled.Text`
+color: #171717;`
