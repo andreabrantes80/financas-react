@@ -2,12 +2,17 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Home from "../pages/Home";
 import New from '../pages/New';
+import Profile from "../pages/Profile";
+import CustomDrawer from "../components/CustomDrawer";
 
 const AppDrawer = createDrawerNavigator();
 
 function AppRoutes() {
     return (
-        <AppDrawer.Navigator screenOptions={{
+        <AppDrawer.Navigator
+
+            drawerContent={(prpos)=> <CustomDrawer {...prpos} />}
+            screenOptions={{
             headerShown: false,
             drawerStyle: {
                 backgroundColor: '#fff',
@@ -17,7 +22,11 @@ function AppRoutes() {
             drawerActiveTintColor: '#fff',
 
             drawerInactiveBackgroundColor: '#f0f2ff',
-            drawerInactiveTintColor: '#121212'
+            drawerInactiveTintColor: '#121212',
+
+            drawerItemStyle: {
+                marginBottom: 8
+            }
 
         }}>
             <AppDrawer.Screen
@@ -29,6 +38,11 @@ function AppRoutes() {
                 name="Registrar"
                 component={New}
             />
+            <AppDrawer.Screen
+                name="Perfil"
+                component={Profile}
+            />
+
         </AppDrawer.Navigator>
     )
 }

@@ -1,14 +1,17 @@
 import { useIsFocused } from '@react-navigation/native';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Modal, TouchableOpacity } from 'react-native';
 import BalanceItem from '../../components/BalanceItem';
+import CalendarModal from '../../components/CalendarModal';
 import Header from '../../components/Header';
 import HistoricoList from '../../components/HistoricoList';
 import api from '../../services/api';
 import { Area, Background, List, ListBalance, Title } from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
 export default function Home() {
     // const { signOut } = useContext(AuthContext)
 
@@ -17,6 +20,8 @@ export default function Home() {
     const [listBalance, setListBalance] = useState([]);
 
     const [movements, setMovements] = useState([]);
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [dateMovements, setDateMovements] = useState(new Date());
 
@@ -68,6 +73,10 @@ export default function Home() {
 
     }
 
+    function filterDateMovements(dateSelected) {
+        setDateMovements(dateSelected);
+    }
+
 
     return (
         <Background>
@@ -82,7 +91,7 @@ export default function Home() {
             />
 
             <Area>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=> setModalVisible(true)} >
                     <Icon name='event' color='#121212' size={30}/>
                 </TouchableOpacity>
                 <Title>Ultimas movimentações </Title>
@@ -95,6 +104,11 @@ export default function Home() {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{paddingBottom: 20}}
             />
+
+            <Modal visible={modalVisible} animationType='fade' transparent={true} >
+                <CalendarModal setVisible={() => setModalVisible(false)}
+                    handleFilter={filterDateMovements} />
+            </Modal>
 
         </Background>
     )

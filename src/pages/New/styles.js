@@ -20,6 +20,7 @@ background-color: #00b94a;
 align-items: center;
 border-radius: 4px;
 justify-content: center`;
+
 export const SubmitText = styled.Text`
 color: #fff;
 font-size: 21px;
