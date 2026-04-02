@@ -12,6 +12,7 @@ font-size: 17px;
 padding: 0 8px;
 margin-bottom: 14px;
 border-radius: 4px;
+color: #121212;
 `;
 export const SubmitButton = styled.TouchableOpacity`
 height: 50px;

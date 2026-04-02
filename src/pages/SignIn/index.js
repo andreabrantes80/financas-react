@@ -31,7 +31,8 @@ export default function SignIn() {
           <Input
             value={email}
             onChangeText={(text) => setEmail(text)}
-            placeholder="E-mail" />
+            placeholder="E-mail"
+            placeholderTextColor="#999999" />
 
         </AreaInput>
 
@@ -39,7 +40,9 @@ export default function SignIn() {
           <Input
             value={password}
             onChangeText={(text) => setPassword(text)}
-            placeholder="Senha" />
+            placeholder='Senha'
+            placeholderTextColor="#999999"
+            secureTextEntry/>
         </AreaInput>
 
         <SubmitButton activeOpacity={0.8} onPress={handleLogin} >

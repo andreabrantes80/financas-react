@@ -75,11 +75,13 @@ export default function New() {
                 <SafeAreaView style={{ marginTop: 14, alignItems: 'center' }} >
                     <Input
                         placeholder="Descrição desse registro"
+                        placeholderTextColor="#999999"
                         value={labelInput}
                         onChangeText={(text)=> setLabelInput(text)}
                     />
                     <Input
                         placeholder="Valor desejado"
+                        placeholderTextColor="#999999"
                         keyboardType="numeric"
                         value={valueInput}
                         onChangeText={(text) => setValueInput(text)}

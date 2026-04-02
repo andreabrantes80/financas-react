@@ -25,13 +25,13 @@ export default function SignUp() {
         enabled
       >
         <AreaInput>
-          <Input placeholder="Nome" value={nome} onChangeText={(text) => setNome(text)} />
+          <Input placeholder="Nome" placeholderTextColor='#999999' value={nome} onChangeText={(text) => setNome(text)} />
         </AreaInput>
         <AreaInput>
-          <Input placeholder="Email" value={email} onChangeText={(text) => setEmail(text)} />
+          <Input placeholder="Email" placeholderTextColor='#999999' value={email} onChangeText={(text) => setEmail(text)} />
         </AreaInput>
         <AreaInput>
-          <Input placeholder="Senha" secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
+          <Input placeholder="Senha" placeholderTextColor='#999999' secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
         </AreaInput>
         <SubmitButton onPress={handleSignUp}>
           {loadingAuth ? (
