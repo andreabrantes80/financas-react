@@ -21,7 +21,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.meuapp"
+      "package": "com.andreabrantes.financas"
     },
     "web": {
       "output": "static",

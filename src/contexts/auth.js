@@ -44,7 +44,8 @@ function AuthProvider({ children }) {
       const response = await api.post('/users', {
         name: nome,
         email: email,
-        password: password
+        password: password,
+        balance: 0
       });
       console.log("Resposta da API:", response.data);
 
