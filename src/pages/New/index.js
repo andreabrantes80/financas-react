@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Background, Input, SubmitButton, SubmitText } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
-import { format } from 'date-fns';
 import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../../components/Header';
@@ -19,6 +18,7 @@ export default function New() {
     const [type, setType] = useState('receita');
 
     function handleSubmit() {
+
         Keyboard.dismiss();
 
         // Validação de campos vazios
@@ -51,18 +51,27 @@ export default function New() {
     }
 
     async function handleAdd() {
-        Keyboard.dismiss();
 
-        await api.post('/receive', {
-            description: labelInput,
-            value: Number(valueInput),
-            type: type,
-            date: format(new Date(), 'dd/MM/yyyy')
-        })
+        try {
 
-        setLabelInput('');
-        setValueInput('');
-        navigation.navigate('Home');
+            Keyboard.dismiss();
+
+            await api.post('/receive', {
+                description: labelInput,
+                value: Number(valueInput),
+                type: type,
+                date: new Date()
+            })
+
+            setLabelInput('');
+            setValueInput('');
+            navigation.navigate('Home');
+
+        } catch (error) {
+            console.log("ERRO:", err.response?.data);
+            alert("Erro ao registrar");
+
+        }
 
     }
 

@@ -55,7 +55,9 @@ function AuthProvider({ children }) {
 
     } catch (error) {
       setLoadindAuth(false);
-      alert('Erro ao cadastrar' + error);
+      // ESTE LOG É A CHAVE:
+      console.log("ERRO DETALHADO DO BACKEND:", error.response?.data);
+      alert('Erro ao cadastrar: ' + (error.response?.data?.message || 'Verifique o terminal'));
     }
   }
 
