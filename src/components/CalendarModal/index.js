@@ -1,9 +1,8 @@
-import { parse } from "date-fns";
 import { useState } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import { ButtonFilter, ButtonFilterText, Container, ModalContent } from "./styles";
 import { ptBr } from './localeCalendar';
+import { ButtonFilter, ButtonFilterText, Container, ModalContent } from "./styles";
 
 LocaleConfig.locales['pt-br'] = ptBr;
 LocaleConfig.defaultLocale = 'pt-br';
@@ -15,7 +14,17 @@ export default function CalendarModal({ setVisible, handleFilter }) {
 
     function handleOnDayPress(date) {
         // Parse the date string correctly using date-fns to avoid timezone issues
-        const parsedDate = parse(date.dateString, 'yyyy-MM-dd', new Date());
+        // const parsedDate = parse(date.dateString, 'yyyy-MM-dd', new Date());
+        // setDateNow(parsedDate);
+
+        const [year, month, day] = date.dateString.split('-');
+
+        const parsedDate = new Date(
+            Number(year),
+            Number(month) - 1,
+            Number(day)
+        );
+
         setDateNow(parsedDate);
 
         let markedDate = {};

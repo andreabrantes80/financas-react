@@ -56,11 +56,19 @@ export default function New() {
 
             Keyboard.dismiss();
 
+            const today = new Date();
+
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+
+            const dateFormatted = `${year}-${month}-${day}`;
+
             await api.post('/receive', {
                 description: labelInput,
                 value: Number(valueInput),
                 type: type,
-                date: new Date()
+                date: dateFormatted
             })
 
             setLabelInput('');
@@ -68,7 +76,6 @@ export default function New() {
             navigation.navigate('Home');
 
         } catch (error) {
-            console.log("ERRO:", err.response?.data);
             alert("Erro ao registrar");
 
         }

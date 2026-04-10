@@ -1,14 +1,14 @@
 import { useIsFocused } from '@react-navigation/native';
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import BalanceItem from '../../components/BalanceItem';
 import CalendarModal from '../../components/CalendarModal';
 import Header from '../../components/Header';
 import HistoricoList from '../../components/HistoricoList';
 import api from '../../services/api';
 import { Area, Background, List, ListBalance, Title } from './styles';
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 export default function Home() {
@@ -38,16 +38,14 @@ export default function Home() {
             // let date = new Date(dateMovements);
             // let onlyDate = date.valueOf() + date.getTimezoneOffset() * 60 * 1000;
             // let dateFormated = format(onlyDate, 'dd/MM/yyyy');
-            let dateISO = dateMovements.toISOString();
-
-            console.log('DATA ENVIADA:', dateBR)
+            // let dateISO = dateMovements.toISOString();
+            let dateISO = format(dateMovements, 'yyyy-MM-dd');
 
             const balance = await api.get('/balance', {
                 params: {
                     date: dateISO
                 }
             })
-            console.log('BALANCE:', balance.data)
 
             const receives = await api.get('/receives', {
                 params: {
@@ -55,8 +53,7 @@ export default function Home() {
                 }
             })
 
-            console.log('BALANCE:', balance.data)
-            console.log('MOVEMENTS:', receives.data)
+            
 
 
 

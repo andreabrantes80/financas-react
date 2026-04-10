@@ -47,7 +47,6 @@ function AuthProvider({ children }) {
         password: password,
         balance: 0
       });
-      console.log("Resposta da API:", response.data);
 
       setUser(response.data);
       setLoadindAuth(false);
@@ -56,7 +55,6 @@ function AuthProvider({ children }) {
     } catch (error) {
       setLoadindAuth(false);
       // ESTE LOG É A CHAVE:
-      console.log("ERRO DETALHADO DO BACKEND:", error.response?.data);
       alert('Erro ao cadastrar: ' + (error.response?.data?.message || 'Verifique o terminal'));
     }
   }
@@ -85,7 +83,6 @@ function AuthProvider({ children }) {
       setUser({ id, name, email })
       setLoadindAuth(false)
     } catch (err) {
-      console.log("ERRO AO LOGAR", err);
       setLoadindAuth(false);
     }
   }
