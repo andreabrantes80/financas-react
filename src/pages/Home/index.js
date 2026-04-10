@@ -1,5 +1,4 @@
 import { useIsFocused } from '@react-navigation/native';
-import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
 import BalanceItem from '../../components/BalanceItem';
@@ -33,21 +32,33 @@ export default function Home() {
 
             // let dateFormated = format(dateMovements, 'dd/MM/yyyy');
 
-            let date = new Date(dateMovements);
-            let onlyDate = date.valueOf() + date.getTimezoneOffset() * 60 * 1000;
-            let dateFormated = format(onlyDate, 'dd/MM/yyyy');
+            // let dateBR = format(dateMovements, 'dd/MM/yyyy');
+            // let dateISO = format(dateMovements, 'yyyy-MM-dd');
+
+            // let date = new Date(dateMovements);
+            // let onlyDate = date.valueOf() + date.getTimezoneOffset() * 60 * 1000;
+            // let dateFormated = format(onlyDate, 'dd/MM/yyyy');
+            let dateISO = dateMovements.toISOString();
+
+            console.log('DATA ENVIADA:', dateBR)
 
             const balance = await api.get('/balance', {
                 params: {
-                    date: dateFormated
+                    date: dateISO
                 }
             })
+            console.log('BALANCE:', balance.data)
 
             const receives = await api.get('/receives', {
                 params: {
-                    date: dateFormated
+                    date: dateISO
                 }
             })
+
+            console.log('BALANCE:', balance.data)
+            console.log('MOVEMENTS:', receives.data)
+
+
 
             if (isActive) {
                 setMovements(receives.data)
@@ -91,7 +102,7 @@ export default function Home() {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.tag}
-                renderItem={({ item }) => (<BalanceItem data={item } />)}
+                renderItem={({ item }) => (<BalanceItem data={item} />)}
             />
 
             <Area>
