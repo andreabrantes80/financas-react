@@ -39,27 +39,30 @@ export default function Home() {
             // let onlyDate = date.valueOf() + date.getTimezoneOffset() * 60 * 1000;
             // let dateFormated = format(onlyDate, 'dd/MM/yyyy');
             // let dateISO = dateMovements.toISOString();
-            let dateISO = format(dateMovements, 'yyyy-MM-dd');
 
-            const balance = await api.get('/balance', {
-                params: {
-                    date: dateISO
+            try {
+
+                let dateISO = format(dateMovements, 'yyyy-MM-dd');
+
+                const balance = await api.get('/balance', {
+                    params: {
+                        date: dateISO
+                    }
+                })
+
+                const receives = await api.get('/receives', {
+                    params: {
+                        date: dateISO
+                    }
+                })
+
+
+                if (isActive) {
+                    setMovements(receives.data)
+                    setListBalance(balance.data)
                 }
-            })
-
-            const receives = await api.get('/receives', {
-                params: {
-                    date: dateISO
-                }
-            })
-
-            
-
-
-
-            if (isActive) {
-                setMovements(receives.data)
-                setListBalance(balance.data)
+            } catch (error) {
+                console.log('Erro ao buscar dados:', error);
             }
 
         }

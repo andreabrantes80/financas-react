@@ -15,24 +15,24 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     async function loadStorage(params) {
-      const storageUser = await AsyncStorage.getItem('@buscarToken');
+      try {
+        const storageUser = await AsyncStorage.getItem('@buscarToken');
 
-      if (storageUser) {
-        const response = await api.get('/me', {
-          headers: {
-            'Authorization': `Bearer ${storageUser}`
+        if (storageUser) {
+          api.defaults.headers['Authorization'] = `Bearer ${storageUser}`;
+
+          const response = await api.get('/me');
+
+          if (response?.data) {
+            setUser(response.data);
           }
-        })
-          .catch(() => {
-            setUser(null);
-          })
-
-        api.defaults.headers['Authorization'] = `Bearer ${storageUser}`;
-        setUser(response.data)
-        setLoading(false)
+        }
+      } catch (error) {
+        console.log('Erro ao buscar usuário:', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false)
-
     }
     loadStorage();
   }, [])
