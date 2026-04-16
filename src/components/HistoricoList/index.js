@@ -1,7 +1,7 @@
 
 import { Alert, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { Container, IconView, Tipo, TipoText, ValorText } from "./styles";
+import { Container, IconView, IconViewDesc, Tipo, TipoText, ValorText, ValorTextDescricao } from "./styles";
 
 export default function HistoricoList({ data, deleteItem }) {
 
@@ -28,6 +28,12 @@ export default function HistoricoList({ data, deleteItem }) {
                             color='#fff' />
                         <TipoText>{data.type}</TipoText>
                     </IconView>
+                        <ValorTextDescricao>
+                    <IconViewDesc>
+                            <Icon name='chevron-right' size={20}>
+                            </Icon> {data.description}
+                    </IconViewDesc>
+                    </ValorTextDescricao>
                 </Tipo>
 
                 <ValorText>R$ {data.value}</ValorText>

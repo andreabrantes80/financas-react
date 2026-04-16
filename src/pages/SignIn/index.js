@@ -3,7 +3,7 @@ import { AreaInput, Background, Container, Input, Link, LinkText, Logo, SubmitBu
 
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { ActivityIndicator, Platform } from 'react-native';
+import { ActivityIndicator, Alert, Platform } from 'react-native';
 import { AuthContext } from '../../contexts/auth';
 
 
@@ -15,6 +15,23 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
 
   function handleLogin() {
+
+    if(!email || !password) {
+      Alert.alert.alert('Preencha os campos de email e senha');
+      return;
+    }
+
+    if(!email.includes('@')) {
+      Alert.alert('Digite um email válido');
+      return;
+    }
+
+    if(password.length < 6) {
+      Alert.alert('A senha deve conter pelo menos 6 caracteres');
+      return;
+    }
+
+
     signIn(email, password);
   }
 

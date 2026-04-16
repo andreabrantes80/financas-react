@@ -30,6 +30,25 @@ export const IconView = styled.View`
 
 `;
 
+export const IconViewDesc = styled.View`
+    flex-direction: row;
+    margin-bottom: 4px;
+    size: 22px;
+    
+`;
+
+
 export const ValorText = styled.Text`
 color: #121212;
 font-size: 22px;`;
+
+export const ValorTextDescricao = styled.Text`
+color: #121212;
+font-size: 18px;
+margin-left: 12px;
+align-self: center;
+font-style: italic;
+font-weight: bold;
+margin-bottom: 4px;
+
+`;
