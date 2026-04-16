@@ -30,8 +30,8 @@ export default function HistoricoList({ data, deleteItem }) {
                     </IconView>
                         <ValorTextDescricao>
                     <IconViewDesc>
-                            <Icon name='chevron-right' size={20}>
-                            </Icon> {data.description}
+                            <Icon name='chevron-right' size={20} />
+                             {data.description}
                     </IconViewDesc>
                     </ValorTextDescricao>
                 </Tipo>
