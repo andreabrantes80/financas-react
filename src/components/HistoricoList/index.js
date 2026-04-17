@@ -14,7 +14,7 @@ export default function HistoricoList({ data, deleteItem }) {
                 style: 'cancel'
             }, {
                 text: 'Continuar',
-                onPress: ()=> deleteItem(data.id)
+                onPress: () => deleteItem(data.id)
             }]
         )
     }
@@ -28,12 +28,12 @@ export default function HistoricoList({ data, deleteItem }) {
                             color='#fff' />
                         <TipoText>{data.type}</TipoText>
                     </IconView>
-                        <ValorTextDescricao>
                     <IconViewDesc>
-                            <Icon name='chevron-right' size={20} />
-                             {data.description}
+                        <Icon name='chevron-right' size={20} />
+                        <ValorTextDescricao>
+                            {data.description}
+                        </ValorTextDescricao>
                     </IconViewDesc>
-                    </ValorTextDescricao>
                 </Tipo>
 
                 <ValorText>R$ {data.value}</ValorText>
