@@ -20,7 +20,7 @@ flex-direction: row;`;
 
 export const IconView = styled.View`
     flex-direction: row;
-    background-color: ${props => props.tipo === 'despesa' ? '#c62c36' : '#049301' };
+    background-color: ${props => props.tipo === 'withdraw' ? '#c62c36' : '#049301' };
     padding-bottom: 4px;
     padding-top: 4px;
     padding-left: 8px;
@@ -34,7 +34,7 @@ export const IconViewDesc = styled.View`
     flex-direction: row;
     margin-bottom: 4px;
     size: 22px;
-    
+
 `;
 
 

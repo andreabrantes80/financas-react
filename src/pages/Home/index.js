@@ -62,7 +62,7 @@ export default function Home() {
                     setListBalance(balance.data)
                 }
             } catch (error) {
-                console.log('Erro ao buscar dados:', error);
+                console.log('ERRO DETALHADO:', error.response?.data || error);
             }
 
         }

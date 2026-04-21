@@ -19,12 +19,15 @@ function AuthProvider({ children }) {
         const storageUser = await AsyncStorage.getItem('@buscarToken');
 
         if (storageUser) {
-          api.defaults.headers['Authorization'] = `Bearer ${storageUser}`;
+          api.defaults.headers.common['Authorization'] = `Bearer ${storageUser}`;
 
           const response = await api.get('/me');
 
           if (response?.data) {
-            setUser(response.data);
+            setUser({
+              ...response.data,
+              token: storageUser
+            });
           }
         }
       } catch (error) {
@@ -78,9 +81,9 @@ function AuthProvider({ children }) {
       }
       await AsyncStorage.setItem('@buscarToken', token);
 
-      api.defaults.headers['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      setUser({ id, name, email })
+      setUser({ id, name, email, token })
       setLoadindAuth(false)
     } catch (err) {
       setLoadindAuth(false);

@@ -1,13 +1,13 @@
 
-import { useState } from 'react';
-import { Background, Input, SubmitButton, SubmitText } from './styles';
-
 import { useNavigation } from '@react-navigation/native';
+import { useContext, useState } from 'react';
 import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../../components/Header';
 import RegisterTypes from '../../components/RegisterTypes';
+import { AuthContext } from '../../contexts/auth';
 import api from '../../services/api';
+import { Background, Input, SubmitButton, SubmitText } from './styles';
 
 export default function New() {
 
@@ -15,9 +15,11 @@ export default function New() {
 
     const [labelInput, setLabelInput] = useState('');
     const [valueInput, setValueInput] = useState('');
-    const [type, setType] = useState('receita');
+    const [type, setType] = useState('deposit');
+    const { user } = useContext(AuthContext);
 
     function handleSubmit() {
+        console.log("CLIQUEI NO BOTÃO");
 
         Keyboard.dismiss();
 
@@ -34,6 +36,9 @@ export default function New() {
             return;
         }
 
+        handleAdd();
+
+
         Alert.alert(
             'Confirmando dados',
             `Tipo: ${type} - Valor: ${valor}`,
@@ -44,13 +49,14 @@ export default function New() {
                 },
                 {
                     text: 'Continuar',
-                    onPress: () => handleAdd()
+                    onPress: handleAdd
                 }
-            ]
+            ], { cancelable: false }
         );
     }
 
     async function handleAdd() {
+        console.log("CLIQUEI NO BOTÃO");
 
         try {
 
@@ -64,11 +70,21 @@ export default function New() {
 
             const dateFormatted = `${year}-${month}-${day}`;
 
-            await api.post('/receive', {
+            console.log('HEADERS:', api.defaults.headers);
+            console.log('ENVIANDO:', {
                 description: labelInput,
                 value: Number(valueInput),
                 type: type,
                 date: dateFormatted
+            });
+
+            console.log("TOKEN:", api.defaults.headers['Authorization']);
+
+            await api.post('/receive', {
+                description: labelInput,
+                value: Number(valueInput),
+                type: type,
+                date: dateFormatted,
             })
 
             setLabelInput('');
@@ -76,7 +92,9 @@ export default function New() {
             navigation.navigate('Home');
 
         } catch (error) {
-            alert("Erro ao registrar");
+
+
+            alert(error.response?.data?.error || "Erro ao registrar");
 
         }
 

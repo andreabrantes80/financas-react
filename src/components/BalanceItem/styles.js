@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-background-color: #${props => props.bg};
+background-color: ${props => props.bg};
 margin-left: 14px;
 margin-right: 14px;
 border-radius: 4px;

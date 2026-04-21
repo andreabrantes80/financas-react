@@ -17,7 +17,7 @@ export default function SignIn() {
   function handleLogin() {
 
     if(!email || !password) {
-      Alert.alert.alert('Preencha os campos de email e senha');
+      Alert.alert('Preencha os campos de email e senha');
       return;
     }
 
