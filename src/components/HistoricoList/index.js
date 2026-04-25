@@ -23,10 +23,10 @@ export default function HistoricoList({ data, deleteItem }) {
             <Container>
                 <Tipo>
                     <IconView tipo={data.type} >
-                        <Icon name={data.type === 'withdraw' ? 'arrow-down' : 'arrow-up'}
+                        <Icon name={data.type === 'despesa' ? 'arrow-down' : 'arrow-up'}
                             size={20}
                             color='#fff' />
-                        <TipoText>{data.type === 'withdraw' ? 'Despesa' : 'Receita'}</TipoText>
+                        <TipoText>{data.type === 'despesa' ? 'Despesa' : 'Receita'}</TipoText>
                     </IconView>
                     <IconViewDesc>
                         <Icon name='chevron-right' size={20} />

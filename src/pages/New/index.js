@@ -15,11 +15,10 @@ export default function New() {
 
     const [labelInput, setLabelInput] = useState('');
     const [valueInput, setValueInput] = useState('');
-    const [type, setType] = useState('deposit');
+    const [type, setType] = useState('receita');
     const { user } = useContext(AuthContext);
 
     function handleSubmit() {
-        console.log("CLIQUEI NO BOTÃO");
 
         Keyboard.dismiss();
 
@@ -36,7 +35,7 @@ export default function New() {
             return;
         }
 
-        handleAdd();
+
 
 
         Alert.alert(
@@ -56,7 +55,6 @@ export default function New() {
     }
 
     async function handleAdd() {
-        console.log("CLIQUEI NO BOTÃO");
 
         try {
 

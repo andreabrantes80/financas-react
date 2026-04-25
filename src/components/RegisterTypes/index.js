@@ -13,8 +13,8 @@ export default function RegisterTypes({ type, sendTypeChanged }) {
 
     return (
         <RegisterContainer>
-            <RegisterTypesButton checked={type === 'deposit'}
-            onPress={()=> changeType('deposit')}
+            <RegisterTypesButton checked={type === 'receita'}
+            onPress={()=> changeType('receita')}
             >
                 <Feather name="arrow-up" size={25} color="#121212" />
                 <RegisterLabel>
@@ -23,8 +23,8 @@ export default function RegisterTypes({ type, sendTypeChanged }) {
 
             </RegisterTypesButton>
 
-            <RegisterTypesButton checked={type === 'withdraw'}
-                onPress={() => changeType('withdraw')}
+            <RegisterTypesButton checked={type === 'despesa'}
+                onPress={() => changeType('despesa')}
             >
                 <Feather name="arrow-down" size={25} color="#121212" />
                 <RegisterLabel>

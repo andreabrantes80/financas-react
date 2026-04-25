@@ -12,30 +12,27 @@ export default function BalanceItem({ data }) {
             };
         }
 
-        if (data.tag === 'saldo') {
-            return {
+        const map = {
+            balance: {
                 label: 'Saldo atual',
-                color: '#3b3dbf' // Adicionei # para manter padrão
-            }
-        } else if (data.tag === 'deposit') {
-            return {
+                color: '#3b3dbf'
+            },
+            deposit: {
                 label: 'Entradas de hoje',
                 color: '#00b94a'
-            }
-        } else if (data.tag === 'withdraw') {
-            return {
+            },
+            withdraw: {
                 label: 'Saídas de hoje',
                 color: '#ef463a'
             }
-        }
+        };
 
-        // Retorno padrão se nenhuma tag corresponder
-        return {
+        return map[data.tag] || {
             label: 'Outro',
             color: '#999999'
         };
 
-    }, [data])
+    }, [data]);
 
     const amount = data?.amount || 0;
 
